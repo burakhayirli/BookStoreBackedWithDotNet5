@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataAccess.Concrete.BookOperations.DeleteBook
+namespace Business.Handlers.BookOperations.DeleteBook
 {
     public class DeleteBookCommand
     {

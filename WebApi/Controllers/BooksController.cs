@@ -1,17 +1,12 @@
-﻿using DataAccess.Concrete.BookOperations.CreateBook;
-using DataAccess.Concrete.BookOperations.DeleteBook;
-using DataAccess.Concrete.BookOperations.GetBooks;
-using DataAccess.Concrete.BookOperations.UpdateBook;
+﻿using AutoMapper;
+using Business.Handlers.BookOperations.CreateBook;
+using Business.Handlers.BookOperations.DeleteBook;
+using Business.Handlers.BookOperations.GetBooks;
+using Business.Handlers.BookOperations.UpdateBook;
 using DataAccess.Concrete.EntityFramework;
-using Entities.Concrete;
 using Entities.Dtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static DataAccess.Concrete.BookOperations.CreateBook.CreateBookCommand;
 
 namespace WebApi.Controllers
 {
@@ -21,9 +16,11 @@ namespace WebApi.Controllers
     public class BooksController : ControllerBase
     {
         private readonly BookStoreContext _context;
-        public BooksController(BookStoreContext context)
+        private readonly IMapper _mapper;
+        public BooksController(BookStoreContext context,IMapper mapper)
         {
             this._context = context;
+            this._mapper = mapper;
         }
 
         [HttpGet]
@@ -32,7 +29,7 @@ namespace WebApi.Controllers
             //var bookList = _context.Books.OrderBy(b => b.Id).ToList<Book>();
             //return bookList;
 
-            GetBooksQuery query = new GetBooksQuery(_context);
+            GetBooksQuery query = new GetBooksQuery(_context,_mapper);
             var result =query.Handle();
             return Ok(result);
         }
@@ -42,7 +39,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                GetBookByIdQuery query = new GetBookByIdQuery(_context);
+                GetBookByIdQuery query = new GetBookByIdQuery(_context,_mapper);
                 query.Id = id;
                 var result = query.Handle();
                 return Ok(result);
@@ -59,7 +56,7 @@ namespace WebApi.Controllers
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
 
-            CreateBookCommand command = new CreateBookCommand(_context);
+            CreateBookCommand command = new CreateBookCommand(_context,_mapper);
             try
             {
                 command.Model = newBook;

@@ -1,3 +1,5 @@
+using AutoMapper;
+using Business.Helpers;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace WebApi
@@ -36,6 +39,14 @@ namespace WebApi
             });
 
             services.AddDbContext<BookStoreContext>(options => options.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+            //services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+            services.AddSingleton(mapperConfig.CreateMapper());
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

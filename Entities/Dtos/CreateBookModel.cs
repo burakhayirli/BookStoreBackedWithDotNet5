@@ -1,22 +1,18 @@
-﻿using Core.Entities;
+﻿using AutoMapper;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Entities.Concrete
+namespace Entities.Dtos
 {
-    public class Book 
+    //[AutoMap(typeof(Book))]
+    public class CreateBookModel
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         public string Title { get; set; }
-
         public int GenreId { get; set; }
-
         public int PageCount { get; set; }
-
         public DateTime PublishDate { get; set; }
+
     }
 }

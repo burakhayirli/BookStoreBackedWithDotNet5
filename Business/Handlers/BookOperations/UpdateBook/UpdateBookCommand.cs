@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataAccess.Concrete.BookOperations.UpdateBook
+namespace Business.Handlers.BookOperations.UpdateBook
 {
     public class UpdateBookCommand
     {

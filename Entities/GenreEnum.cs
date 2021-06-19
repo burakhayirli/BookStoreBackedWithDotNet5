@@ -8,6 +8,8 @@ namespace Entities
     {
         PersonalGrow=1,
         ScienceFiction=2,
-        Noval=3
+        Noval=3,
+        Action=4,
+        Drama=5
     }
 }
