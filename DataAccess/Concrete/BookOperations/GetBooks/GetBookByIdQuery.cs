@@ -20,6 +20,10 @@ namespace DataAccess.Concrete.BookOperations.GetBooks
         public BooksViewModel Handle()
         {
             var book = _dbContext.Books.Where(book => book.Id == this.Id).SingleOrDefault();
+
+            if (book == null)
+                throw new InvalidOperationException("Kitap bulunamadı");
+
             BooksViewModel vm = new BooksViewModel()
             {
                 Title = book.Title,

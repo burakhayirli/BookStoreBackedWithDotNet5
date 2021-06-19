@@ -1,8 +1,10 @@
 ﻿using DataAccess.Concrete.BookOperations.CreateBook;
+using DataAccess.Concrete.BookOperations.DeleteBook;
 using DataAccess.Concrete.BookOperations.GetBooks;
 using DataAccess.Concrete.BookOperations.UpdateBook;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,33 +26,6 @@ namespace WebApi.Controllers
             this._context = context;
         }
 
-        //private static List<Book> BookList = new List<Book>() { 
-        //    new Book
-        //    {
-        //        Id=1,
-        //        Title="Steve Jobs",
-        //        GenreId=1, // PersonalGrowth
-        //        PageCount=550,
-        //        PublishDate= new DateTime(2021,01,21)
-        //    },
-        //    new Book
-        //    {
-        //        Id=2,
-        //        Title="Bill Gates",
-        //        GenreId=3, // PersonalGrowth
-        //        PageCount=220,
-        //        PublishDate= new DateTime(2000,04,05)
-        //    },
-        //    new Book
-        //    {
-        //        Id=3,
-        //        Title="Sergey Brin",
-        //        GenreId=5, // PersonalGrowth
-        //        PageCount=430,
-        //        PublishDate= new DateTime(1998,9,4)
-        //    },
-        //};
-
         [HttpGet]
         public IActionResult GetBooks()
         {
@@ -65,11 +40,18 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int  id)
         {
-            GetBookByIdQuery query = new GetBookByIdQuery(_context);
-            query.Id = id;
-            var result = query.Handle();
-            
-            return Ok(result);
+            try
+            {
+                GetBookByIdQuery query = new GetBookByIdQuery(_context);
+                query.Id = id;
+                var result = query.Handle();
+                return Ok(result);
+            }
+            catch (Exception E)
+            {
+
+                return BadRequest(E.Message);
+            }          
         }
 
         
@@ -93,10 +75,10 @@ namespace WebApi.Controllers
 
         [HttpPut]
         public IActionResult UpdateBook(int id, [FromBody] UpdateBookModel updatedBook) {
-            UpdateBookCommand command = new UpdateBookCommand(_context);
-
+            
             try
             {
+                UpdateBookCommand command = new UpdateBookCommand(_context);
                 command.Id = id;
                 command.Model = updatedBook;
                 command.Handle();
@@ -112,11 +94,22 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            var book = _context.Books.SingleOrDefault(b => b.Id == id);
-            if (book is null)
-                return BadRequest("Silinemedi");
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+
+            try
+            {
+                DeleteBookCommand command = new DeleteBookCommand(_context)
+                {
+                    Id = id
+                };
+
+                command.Handle();
+            }
+            catch (Exception E)
+            {
+
+                return BadRequest(E.Message);
+            }
+         
             return Ok("Silindi");
         }
 

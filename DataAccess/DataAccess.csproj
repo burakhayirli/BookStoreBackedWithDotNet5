@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Abstract\" />
-    <Folder Include="Concrete\BookOperations\GetBy\" />
     <Folder Include="Concrete\InMemory\" />
   </ItemGroup>
 
