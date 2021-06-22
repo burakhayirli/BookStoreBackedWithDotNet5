@@ -1,6 +1,7 @@
 using AutoMapper;
 using Business.Helpers;
 using Core.CrossCuttingConcerns.Logging;
+using Core.Extensions;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -66,6 +67,8 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCustomExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
