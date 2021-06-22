@@ -43,12 +43,14 @@ namespace WebApi.Controllers
             {
                 GetBookByIdQuery query = new GetBookByIdQuery(_context, _mapper);
                 query.Id = id;
+
+                GetBookByIdQueryValidator validator = new GetBookByIdQueryValidator();
+                validator.ValidateAndThrow(query);
                 var result = query.Handle();
                 return Ok(result);
             }
             catch (Exception E)
             {
-
                 return BadRequest(E.Message);
             }
         }
@@ -57,7 +59,6 @@ namespace WebApi.Controllers
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
         {
-
             CreateBookCommand command = new CreateBookCommand(_context, _mapper);
             try
             {
@@ -88,6 +89,9 @@ namespace WebApi.Controllers
                 UpdateBookCommand command = new UpdateBookCommand(_context);
                 command.Id = id;
                 command.Model = updatedBook;
+
+                UpdateBookCommandValidator validator = new UpdateBookCommandValidator();
+                validator.ValidateAndThrow(command);
                 command.Handle();
             }
             catch (Exception E)
