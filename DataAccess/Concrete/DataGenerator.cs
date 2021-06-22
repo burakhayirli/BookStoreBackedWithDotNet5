@@ -30,23 +30,23 @@ namespace DataAccess.Concrete
                        PageCount = 550,
                        PublishDate = new DateTime(2021, 01, 21)
                    },
-            new Book
-            {
-                Title = "Bill Gates",
-                GenreId = 3, // PersonalGrowth
-                PageCount = 220,
-                PublishDate = new DateTime(2000, 04, 05)
-            },
-            new Book
-            {
-                Title = "Sergey Brin",
-                GenreId = 5, // PersonalGrowth
-                PageCount = 430,
-                PublishDate = new DateTime(1998, 9, 4)
-            }
+                    new Book
+                    {
+                        Title = "Bill Gates",
+                        GenreId = 3, // PersonalGrowth
+                        PageCount = 220,
+                        PublishDate = new DateTime(2000, 04, 05)
+                    },
+                    new Book
+                    {
+                        Title = "Sergey Brin",
+                        GenreId = 5, // PersonalGrowth
+                        PageCount = 430,
+                        PublishDate = new DateTime(1998, 9, 4)
+                    }
 
 
-                 );
+                         );
 
                 context.SaveChanges();
             }
