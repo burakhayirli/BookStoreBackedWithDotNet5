@@ -38,7 +38,7 @@ namespace WebApi.Controllers
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
-        {
+        { 
             try
             {
                 GetBookByIdQuery query = new GetBookByIdQuery(_context, _mapper);
@@ -54,7 +54,6 @@ namespace WebApi.Controllers
                 return BadRequest(E.Message);
             }
         }
-
 
         [HttpPost]
         public IActionResult AddBook([FromBody] CreateBookModel newBook)
