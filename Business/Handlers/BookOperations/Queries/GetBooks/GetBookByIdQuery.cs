@@ -2,6 +2,7 @@
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Dtos;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Business.Handlers.BookOperations.GetBooks
 
         public BookDetailViewModel Handle()
         {
-            var book = _dbContext.Books.Where(book => book.Id == this.Id).SingleOrDefault();
+            var book = _dbContext.Books.Include(x=> x.Genre).Where(book => book.Id == this.Id).SingleOrDefault();
 
             if (book == null)
                 throw new InvalidOperationException("Kitap bulunamadı");

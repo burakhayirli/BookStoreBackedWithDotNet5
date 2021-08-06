@@ -16,9 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Books\Commands\" />
-    <Folder Include="Handlers\Books\ValidationRules\" />
-    <Folder Include="Handlers\Books\Queries\" />
+    <Folder Include="Handlers\BookOperations\ValidationRules\" />
+    <Folder Include="Handlers\GenreOperations\ValidationRules\" />
   </ItemGroup>
 
 </Project>
