@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.EntityFramework;
+﻿using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace Business.Handlers.BookOperations.DeleteBook
 {
     public class DeleteBookCommand
     {
-        private readonly BookStoreContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         public int Id { get; set; }
-        public DeleteBookCommand(BookStoreContext dbContext)
+        public DeleteBookCommand(IBookStoreDbContext dbContext)
         {
             this._dbContext = dbContext;
         }

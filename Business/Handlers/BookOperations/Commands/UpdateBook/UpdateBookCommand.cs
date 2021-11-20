@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.EntityFramework;
+﻿using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.Dtos;
 using System;
@@ -12,9 +13,9 @@ namespace Business.Handlers.BookOperations.UpdateBook
     {
         public UpdateBookModel Model { get; set; }
         public int Id { get; set; }
-        private readonly BookStoreContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
 
-        public UpdateBookCommand(BookStoreContext dbContext)
+        public UpdateBookCommand(IBookStoreDbContext dbContext)
         {
             this._dbContext = dbContext;
         }

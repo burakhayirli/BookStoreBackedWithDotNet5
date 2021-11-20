@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Dtos;
 using System;
@@ -10,9 +11,9 @@ namespace Business.Handlers.GenreOperations.Queries.GetGenres
 {
     public class GetGenresQuery
     {
-        private readonly BookStoreContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public GetGenresQuery(BookStoreContext context, IMapper mapper)
+        public GetGenresQuery(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

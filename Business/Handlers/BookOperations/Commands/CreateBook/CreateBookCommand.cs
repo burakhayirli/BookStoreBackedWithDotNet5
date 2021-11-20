@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.Dtos;
@@ -12,10 +13,10 @@ namespace Business.Handlers.BookOperations.CreateBook
    public class CreateBookCommand
     {
         public CreateBookModel Model { get; set; }
-        private readonly BookStoreContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public CreateBookCommand(BookStoreContext dbContext, IMapper mapper)
+        public CreateBookCommand(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

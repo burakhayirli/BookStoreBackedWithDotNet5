@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Dtos;
 using System;
@@ -11,8 +12,8 @@ namespace Business.Handlers.GenreOperations.Commands.DeleteGenre
     public class DeleteGenreCommand
     {
         public int GenreId { get; set; }
-        private readonly BookStoreContext _dbContext;
-        public DeleteGenreCommand(BookStoreContext dbContext)
+        private readonly IBookStoreDbContext _dbContext;
+        public DeleteGenreCommand(IBookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }

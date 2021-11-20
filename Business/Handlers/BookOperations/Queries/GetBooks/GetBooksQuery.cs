@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities;
 using Entities.Concrete;
@@ -13,9 +14,9 @@ namespace Business.Handlers.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
-        private readonly BookStoreContext _dbContext;
+        private readonly IBookStoreDbContext _dbContext;
         private readonly IMapper _mapper;
-        public GetBooksQuery(BookStoreContext dbContext, IMapper mapper)
+        public GetBooksQuery(IBookStoreDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

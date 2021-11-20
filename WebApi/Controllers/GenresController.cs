@@ -12,6 +12,7 @@ using Entities.Dtos;
 using Business.Handlers.GenreOperations.Commands.CreateGenre;
 using Business.Handlers.GenreOperations.Commands.UpdateGenre;
 using Business.Handlers.GenreOperations.Commands.DeleteGenre;
+using DataAccess.Abstract;
 
 namespace WebApi.Controllers
 {
@@ -19,9 +20,9 @@ namespace WebApi.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly BookStoreContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public GenresController(BookStoreContext context, IMapper mapper)
+        public GenresController(IBookStoreDbContext context, IMapper mapper)
         {
             this._context = context;
             this._mapper = mapper;

@@ -1,4 +1,5 @@
-﻿using DataAccess.Concrete.EntityFramework;
+﻿using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Dtos;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace Business.Handlers.GenreOperations.Commands.UpdateGenre
         public int GenreId { get; set; }
         public UpdateGenreModel Model { get; set; }
 
-        private readonly BookStoreContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public UpdateGenreCommand(BookStoreContext context)
+        public UpdateGenreCommand(IBookStoreDbContext context)
         {
             _context = context;
         }

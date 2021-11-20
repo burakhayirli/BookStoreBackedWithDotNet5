@@ -3,6 +3,7 @@ using Business.Handlers.BookOperations.CreateBook;
 using Business.Handlers.BookOperations.DeleteBook;
 using Business.Handlers.BookOperations.GetBooks;
 using Business.Handlers.BookOperations.UpdateBook;
+using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Dtos;
 using FluentValidation;
@@ -17,9 +18,9 @@ namespace WebApi.Controllers
 
     public class BooksController : ControllerBase
     {
-        private readonly BookStoreContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
-        public BooksController(BookStoreContext context, IMapper mapper)
+        public BooksController(IBookStoreDbContext context, IMapper mapper)
         {
             this._context = context;
             this._mapper = mapper;
@@ -35,7 +36,7 @@ namespace WebApi.Controllers
             var result = query.Handle();
             return Ok(result);
         }
-
+        
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {

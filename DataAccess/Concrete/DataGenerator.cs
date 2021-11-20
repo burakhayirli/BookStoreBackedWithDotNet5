@@ -59,7 +59,7 @@ namespace DataAccess.Concrete
                         PageCount = 430,
                         PublishDate = new DateTime(1998, 9, 4)
                     }
-                         );
+                   );
 
                 context.SaveChanges();
             }
