@@ -10,5 +10,7 @@ namespace Entities.Dtos
         public int PageCount { get; set; }
         public string PublishDate { get; set; }
         public string Genre { get; set; }
+        public string AuthorName { get; set; }
+
     }
 }

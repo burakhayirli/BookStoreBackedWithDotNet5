@@ -8,6 +8,7 @@ using DataAccess.Concrete.EntityFramework;
 using Entities.Dtos;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -15,7 +16,8 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    //[Authorize]
+     
     public class BooksController : ControllerBase
     {
         private readonly IBookStoreDbContext _context;

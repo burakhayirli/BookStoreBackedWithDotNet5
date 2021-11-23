@@ -4,11 +4,13 @@ using System.Text;
 
 namespace Entities.Dtos
 {
-   public class BookDetailViewModel
-    {      
-            public string Title { get; set; }
-            public int PageCount { get; set; }
-            public string PublishDate { get; set; }
-            public string Genre { get; set; }   
+    public class BookDetailViewModel
+    {
+        public string Title { get; set; }
+        public int PageCount { get; set; }
+        public string PublishDate { get; set; }
+        public string Genre { get; set; }
+        public string AuthorName { get; set; }
+
     }
 }

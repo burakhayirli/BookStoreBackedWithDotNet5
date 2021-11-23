@@ -28,9 +28,7 @@ namespace Business.Handlers.BookOperations.UpdateBook
                 throw new InvalidOperationException("Boş veri gönderilemez. Lütfen verdiğiniz bilgileri kontrol ediniz.");
 
             book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
-          //  book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
             book.Title = Model.Title != default ? Model.Title : book.Title;
-            //book.PublishDate = Model.PublishDate != default ? Convert.ToDateTime(Model.PublishDate) : book.PublishDate;
             _dbContext.SaveChanges();
         }
     }    

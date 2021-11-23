@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Dtos;

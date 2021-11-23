@@ -37,27 +37,37 @@ namespace DataAccess.Concrete
                     );
 
 
+                context.Authors.AddRange(
+                    new Author { Id=1, Name="Steve", Surname="Jobs"},
+                    new Author { Id = 2, Name ="Bill", Surname="Gates"},
+                    new Author { Id = 3, Name ="Sergey", Surname="Brin"}
+                    );
+
                 context.Books.AddRange(
                    new Book
                    {
-                       Title = "Steve Jobs",
+                       Title = "Steve Jobs Book",
                        GenreId = 1,
                        PageCount = 550,
-                       PublishDate = new DateTime(2021, 01, 21)
+                       PublishDate = new DateTime(2021, 01, 21),
+                       AuthorId=1
+
                    },
                     new Book
                     {
-                        Title = "Bill Gates",
+                        Title = "Bill Gates Book",
                         GenreId = 2,
                         PageCount = 220,
-                        PublishDate = new DateTime(2000, 04, 05)
+                        PublishDate = new DateTime(2000, 04, 05),
+                        AuthorId = 2
                     },
                     new Book
                     {
-                        Title = "Sergey Brin",
+                        Title = "Sergey Brin Book",
                         GenreId = 2, // PersonalGrowth
                         PageCount = 430,
-                        PublishDate = new DateTime(1998, 9, 4)
+                        PublishDate = new DateTime(1998, 9, 4),
+                        AuthorId = 3
                     }
                    );
 

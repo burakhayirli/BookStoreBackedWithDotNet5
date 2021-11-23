@@ -21,7 +21,7 @@ namespace Business.Handlers.BookOperations.DeleteBook
 
             var book = _dbContext.Books.SingleOrDefault(b => b.Id == Id);
             if (book is null)
-                new InvalidOperationException("Silinecek kitap bulunamadı");
+                throw new InvalidOperationException("Silinecek kitap bulunamadı");
 
             _dbContext.Books.Remove(book);
             _dbContext.SaveChanges();

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Entities.Concrete;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,12 +12,13 @@ namespace DataAccess.Concrete.EntityFramework
     {
         public BookStoreContext(DbContextOptions<BookStoreContext> options) : base(options)
         {
-
+            
         }
 
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
         public override int SaveChanges()
         {

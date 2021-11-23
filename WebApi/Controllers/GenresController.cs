@@ -13,11 +13,13 @@ using Business.Handlers.GenreOperations.Commands.CreateGenre;
 using Business.Handlers.GenreOperations.Commands.UpdateGenre;
 using Business.Handlers.GenreOperations.Commands.DeleteGenre;
 using DataAccess.Abstract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class GenresController : ControllerBase
     {
         private readonly IBookStoreDbContext _context;

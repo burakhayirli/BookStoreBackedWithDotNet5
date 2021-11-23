@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration;
+//using AutoMapper.Configuration;
 using DataAccess.Abstract;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Handlers.UserOperations.Commands.CreateUser;
+using Microsoft.Extensions.Configuration;
+using Core.TokenOperations.Models;
+using Business.Handlers.UserOperations.Commands.CreateToken;
+using Business.Handlers.UserOperations.Commands.RefreshToken;
 
 namespace WebApi.Controllers
 {
@@ -34,6 +38,26 @@ namespace WebApi.Controllers
             command.Handle();
 
             return Ok();
+        }
+
+        [HttpPost("connect/token")]
+        public ActionResult<Token> CreateToken([FromBody] CreateTokenModel login)
+        {
+            CreateTokenCommand command = new CreateTokenCommand(_context, _mapper,_configuration);
+            command.Model = login;
+            var token = command.Handle();
+            return token;
+
+        }
+
+        [HttpGet("refreshtoken")]
+        public ActionResult<Token> RefreshToken([FromQuery] string token)
+        {
+            RefreshTokenCommand command = new RefreshTokenCommand(_context, _configuration);
+            command.RefreshToken = token;
+            var resultToken = command.Handle();
+            return resultToken;
+
         }
     }
 }
