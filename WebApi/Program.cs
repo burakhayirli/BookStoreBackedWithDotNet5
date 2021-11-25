@@ -1,4 +1,5 @@
 using DataAccess.Concrete;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,18 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
+            //var host = CreateHostBuilder(args).Build();
+
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
+            //    DataGenerator.Initialize(services);
+            //}
+
+            //host.Run();
+
+
+            //var host = CreateWebHostBuilder(args).Build();
             var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
@@ -32,5 +45,13 @@ namespace WebApi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        //public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        //WebHost.CreateDefaultBuilder(args)
+        //  .UseStartup<Startup>()
+        //  .UseKestrel(options =>
+        //  {
+        //      options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
+        //  });
     }
 }

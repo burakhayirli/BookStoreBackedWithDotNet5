@@ -27,5 +27,5 @@ WORKDIR /app
 COPY --from=publish /publish .
 ENTRYPOINT ["dotnet", "WebApi.dll"]
 
-#docker build -f WebApi/Dockerfile -t burakhayirli/bookstorewebapi .
-#docker run -d -p 5000:80 --name bookstorewebapi burakhayirli/bookstorewebapi
+#docker build -f WebApi/Dockerfile -t burakhayirli/dotnetcorebookstorewebapi .
+#docker run -d -p 5000:80 --name bookstorewebapi burakhayirli/dotnetcorebookstorewebapi
